@@ -1,10 +1,10 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 
 Auth::requireLogin();
 
-$conn = require "includes/db.php";
+$conn = require "../includes/db.php";
 
 $id = $_GET["id"] ?? null;
 
@@ -24,11 +24,11 @@ if (isset($id)) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($article->delete($conn)) {
-    Url::redirect("/");
+    Url::redirect("/admin");
   }
 }
 
-include "includes/header.php";
+include "../includes/header.php";
 
 ?>
 
@@ -44,4 +44,4 @@ include "includes/header.php";
   </div>
 </form>
 
-<?php "includes/footer.php"; ?>
+<?php "../includes/footer.php"; ?>

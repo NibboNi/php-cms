@@ -10,27 +10,19 @@ require "includes/header.php"
 
 ?>
 
-<div class="log">
-  <?php if (Auth::isLoggedIn()): ?>
-    <a href="logout.php">Logout</a>
-  <?php else: ?>
-    <a href="login.php">Login</a>
-  <?php endif; ?>
-</div>
-
 <main class="container">
 
-  <?php if (Auth::isLoggedIn()): ?>
+  <!-- <?php if (Auth::isLoggedIn()): ?>
     <a href="new-article.php" class="link">New article</a>
-  <?php endif; ?>
+  <?php endif; ?> -->
 
   <?php if (empty($articles)): ?>
     <p>No articles found.</p>
   <?php else: ?>
-    <ul>
+    <ul class="list">
 
       <?php foreach ($articles as $article): ?>
-        <li>
+        <li class="list__item">
           <article>
             <h2>
               <a href="article.php?id=<?= $article["id"]; ?>">

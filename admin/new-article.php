@@ -1,6 +1,6 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 
 Auth::requireLogin();
 
@@ -8,17 +8,17 @@ $article = new Article();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $conn = require "includes/db.php";
+  $conn = require "../includes/db.php";
 
   $article->title = $_POST["title"];
   $article->content = $_POST["content"];
 
   if ($article->create($conn)) {
-    Url::redirect("/article.php?id={$article->id}");
+    Url::redirect("/admin/article.php?id={$article->id}");
   }
 }
 
-require "includes/header.php";
+require "../includes/header.php";
 
 ?>
 
@@ -28,9 +28,9 @@ require "includes/header.php";
   <?php
 
   $action = "Create";
-  include "includes/article-form.php";
+  include "../includes/article-form.php";
 
   ?>
 </main>
 
-<?php require "includes/footer.php"; ?>
+<?php require "../includes/footer.php"; ?>

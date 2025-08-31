@@ -1,10 +1,10 @@
 <?php
 
-require "includes/init.php";
+require "../includes/init.php";
 
 Auth::requireLogin();
 
-$conn = require "includes/db.php";
+$conn = require "../includes/db.php";
 
 $id = $_GET["id"] ?? null;
 
@@ -26,11 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $article->updated_at = date("Y-m-d H:i:s");
 
   if ($article->update($conn)) {
-    Url::redirect("/article.php?id={$article->id}");
+    Url::redirect("/admin/article.php?id={$article->id}");
   }
 }
 
-require "includes/header.php";
+require "../includes/header.php";
 
 ?>
 
@@ -40,9 +40,9 @@ require "includes/header.php";
   <?php
 
   $action = "Update";
-  include "includes/article-form.php";
+  include "../includes/article-form.php";
 
   ?>
 </main>
 
-<?php require "includes/footer.php"; ?>
+<?php require "../includes/footer.php"; ?>
