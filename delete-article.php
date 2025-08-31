@@ -2,9 +2,7 @@
 
 require "includes/init.php";
 
-if (!Auth::isLoggedIn()) {
-  Url::redirect("/");
-}
+Auth::requireLogin();
 
 $conn = require "includes/db.php";
 

@@ -10,9 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = trim($_POST["password"]);
 
   if (User::auth($conn, $user, $password)) {
-    session_regenerate_id(true);
-
-    $_SESSION["is_logged_in"] = true;
+    Auth::login();
     Url::redirect("/");
   } else {
     $loginError = "Incorrect Credentials!";
