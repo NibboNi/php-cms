@@ -5,7 +5,24 @@ require  "../includes/init.php";
 Auth::requireLogin();
 
 $conn = require "../includes/db.php";
-$articles = Article::getAll($conn);
+
+$totalArticles = Article::getTotal($conn);
+$articlesPerPage = 10;
+$totalPages = ceil($totalArticles / $articlesPerPage);
+
+$page = $_GET["page"] ?? 1;
+
+if ($page > $totalPages) {
+  Url::redirect("/admin/?page=$totalPages");
+}
+
+if ($page < 1) {
+  Url::redirect("/admin/?page=1");
+}
+
+$paginator = new Paginator($page, $articlesPerPage, $totalArticles);
+
+$articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
 $headerTitle = "Admin Panel";
 
@@ -14,6 +31,8 @@ require "../includes/header.php"
 ?>
 
 <main class="container">
+
+  <?php include "../includes/pagination.php"; ?>
 
   <?php if (empty($articles)): ?>
     <p>No articles found.</p>

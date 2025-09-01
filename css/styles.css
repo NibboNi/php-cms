@@ -458,3 +458,36 @@ a {
 .mt-auto {
   margin-top: auto;
 }
+
+.paginator {
+  margin-top: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.paginator__link {
+  height: 3.2rem;
+  width: 3.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bdbdbd;
+  border-radius: 50%;
+  opacity: 0.8;
+  fill: #121212;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.paginator__link--disabled {
+  pointer-events: none;
+  opacity: 0.5;
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}

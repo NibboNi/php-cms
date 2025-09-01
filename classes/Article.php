@@ -40,6 +40,17 @@ class Article
   public $formErrors = [];
 
   /**
+   * Get a count of the total number of records
+   *
+   * @param PDO $conn Connection to the database
+   * @return int Total number of records
+   */
+  public static function getTotal($conn)
+  {
+    return $conn->query("SELECT COUNT(*) FROM article;")->fetchColumn();
+  }
+
+  /**
    * Fetch All articles from the data base
    *
    * @param PDO object connection to the database
@@ -58,6 +69,32 @@ class Article
   }
 
   /**
+   * Fetch all articles within our limit and offset
+   *
+   * @param PDO $conn connection to the database
+   * @param int $limit max amout of articles to fetch
+   * @param int $offset from where to start fetching
+   * @return array An associative array of all the article records within range
+   */
+  public static function getPage($conn, $limit = 8, $offset = 0)
+  {
+    $query = "SELECT *
+              FROM article
+              ORDER BY published_at
+              LIMIT :limit
+              OFFSET :offset
+    ;";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
+    $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  /**
    * Get the article recprd based on the ID
    *
    * @param integer $id The article ID
@@ -70,8 +107,8 @@ class Article
   {
     $query = "SELECT $columns
               FROM article
-              WHERE id = :id;
-    ";
+              WHERE id = :id
+    ;";
 
     $stmt = $conn->prepare($query);
     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
@@ -95,8 +132,8 @@ class Article
 
       $query = "INSERT INTO article 
                 (title, content)
-                VALUES (:title, :content);
-      ";
+                VALUES (:title, :content)
+      ;";
 
       $stmt = $conn->prepare($query);
       $stmt->bindValue(":title", $this->title, PDO::PARAM_STR);
@@ -123,8 +160,8 @@ class Article
 
       $query = "UPDATE article 
                 SET title=:title, content=:content, updated_at=:updated_at
-                WHERE id=:id;
-      ";
+                WHERE id=:id
+      ;";
 
       $stmt = $conn->prepare($query);
       $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);

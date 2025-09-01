@@ -4,17 +4,29 @@ require "includes/init.php";
 
 $conn = require "includes/db.php";
 
-$articles = Article::getAll($conn);
+$totalArticles = Article::getTotal($conn);
+$articlesPerPage = 6;
+$totalPages = ceil($totalArticles / $articlesPerPage);
+
+$page = $_GET["page"] ?? 1;
+
+if ($page > $totalPages) {
+  Url::redirect("/?page=$totalPages");
+}
+
+if ($page < 1) {
+  Url::redirect("/");
+}
+
+$paginator = new Paginator($page, $articlesPerPage, $totalArticles);
+
+$articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
 require "includes/header.php"
 
 ?>
 
 <main class="container">
-
-  <!-- <?php if (Auth::isLoggedIn()): ?>
-    <a href="new-article.php" class="link">New article</a>
-  <?php endif; ?> -->
 
   <?php if (empty($articles)): ?>
     <p>No articles found.</p>
@@ -36,6 +48,8 @@ require "includes/header.php"
 
     </ul>
   <?php endif; ?>
+
+  <?php include "includes/pagination.php"; ?>
 
 </main>
 
