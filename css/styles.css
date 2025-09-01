@@ -305,6 +305,7 @@ a {
   margin: 0.8rem 0rem 0.4rem;
   font-size: 3.2rem;
   text-transform: capitalize;
+  word-break: break-all;
 }
 
 .article__date {
@@ -581,9 +582,6 @@ a {
         a {
           display: inline-block;
           width: 100%;
-          /* overflow: hidden; */
-          /* white-space: nowrap; */
-          /* text-overflow: ellipsis; */
           word-break: break-all;
           &:hover {
             color: oklch(58.8% 0.158 241.966);

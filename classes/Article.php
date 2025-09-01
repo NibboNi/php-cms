@@ -186,6 +186,9 @@ class Article
     if (trim($this->title) === "") {
       $this->formErrors[] = "A title for the post is required";
     }
+    if (strlen(trim($this->title)) > 128) {
+      $this->formErrors[] = "A title can be longer than 128 characters";
+    }
     if (trim($this->content) === "") {
       $this->formErrors[] = "A content for the post is required";
     }

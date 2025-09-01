@@ -8,7 +8,7 @@
 
 <form method="post" class="form">
   <div class="input-container">
-    <input id="title" name="title" type="text" placeholder=" " value="<?= htmlspecialchars($article->title ?? ""); ?>" class="input" required>
+    <input id="title" name="title" type="text" placeholder=" " value="<?= htmlspecialchars($article->title ?? ""); ?>" maxlength="128" class="input" required>
     <label for="title" class="label">Title</label>
   </div>
   <div class="input-container">
