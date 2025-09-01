@@ -491,3 +491,136 @@ a {
     cursor: not-allowed;
   }
 }
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  margin: 4rem 0rem;
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    width: 100%;
+    background-color: #c4c4c4;
+
+    tr {
+      width: 100%;
+    }
+
+    th {
+      padding: 1.2rem;
+      text-transform: capitalize;
+      font-weight: 500;
+
+      &:first-of-type {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background-color: #c4c4c4;
+        border-radius: 1rem 0 0 0;
+      }
+
+      &:last-of-type {
+        border-radius: 0 1rem 0 0;
+      }
+    }
+  }
+
+  tbody {
+    width: 100%;
+
+    tr {
+      width: 100%;
+
+      td {
+        &:first-of-type {
+          background-color: #dedede;
+        }
+      }
+    }
+
+    tr:nth-child(even) {
+      background-color: #d2d2d2;
+
+      &:last-of-type {
+        td {
+          &:first-of-type {
+            border-radius: 0 0 0 1rem;
+          }
+          &:last-of-type {
+            border-radius: 0 0 1rem 0;
+          }
+        }
+      }
+
+      td {
+        &:first-of-type {
+          background-color: #d2d2d2;
+        }
+      }
+    }
+
+    td {
+      padding: 0.8rem 1.6rem;
+      font-weight: 300;
+      text-align: center;
+
+      &:first-of-type {
+        min-width: 15rem;
+        max-width: 15rem;
+        overflow: hidden;
+        position: sticky;
+        top: 0;
+        left: 0;
+        text-align: left;
+        font-weight: 500;
+
+        a {
+          display: inline-block;
+          width: 100%;
+          /* overflow: hidden; */
+          /* white-space: nowrap; */
+          /* text-overflow: ellipsis; */
+          word-break: break-all;
+          &:hover {
+            color: oklch(58.8% 0.158 241.966);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .table {
+    overflow: hidden;
+    border-radius: 0.6rem 0.6rem 1rem 1rem;
+
+    tbody {
+      td {
+        &:first-of-type {
+          max-width: 25rem;
+        }
+      }
+    }
+  }
+}
+
+.form-action {
+  width: 5rem;
+  max-width: 5rem;
+  display: inline-block;
+  font-weight: 500;
+  color: oklch(58.8% 0.158 241.966);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.form-action--delete {
+  color: #dc2626;
+}
