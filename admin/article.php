@@ -37,7 +37,12 @@ require "../includes/header.php";
           <div class="actions">
             <a href="delete-article.php?id=<?= $id ?>" class="link link--delete">Delete</a>
             <a href="edit-article.php?id=<?= $id ?>" class="link">Edit</a>
+            <a href="edit-article-image.php?id=<?= $id ?>" class="link">Edit image</a>
           </div>
+        <?php endif; ?>
+
+        <?php if ($article->image_file): ?>
+          <img src="/uploads/<?= $article->image_file; ?>" alt="">
         <?php endif; ?>
 
         <h2 class="article__title"><?= htmlspecialchars($article->title); ?></h2>

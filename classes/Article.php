@@ -34,6 +34,11 @@ class Article
    */
   public $updated_at;
   /**
+   * The article image
+   * @var string
+   */
+  public $image_file;
+  /**
    * Validatation errors 
    * @var array
    */
@@ -242,5 +247,27 @@ class Article
       "updatedDate" => $updated["tag"],
       "updatedDateTime" => $updated["attr"]
     ];
+  }
+
+  /**
+   * Update the image file property
+   *
+   * @param PDO $conn The connection to the database
+   * @param string $filename The name of the image file
+   * 
+   * @return boolean True if it was successful, false otherwise
+   */
+  public function setImageFile($conn, $filename)
+  {
+    $query = "UPDATE article 
+              SET image_file=:filename
+              WHERE id=:id 
+    ;";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":filename", $filename, $filename == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+    return $stmt->execute();
   }
 }

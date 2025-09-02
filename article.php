@@ -31,6 +31,9 @@ require "includes/header.php";
 
     <article class="article">
       <header class="article__header">
+        <?php if ($article->image_file): ?>
+          <img src="/uploads/<?= $article->image_file; ?>" alt="">
+        <?php endif; ?>
         <h2 class="article__title"><?= htmlspecialchars($article->title); ?></h2>
         <div class="article__date">
           <div class="<?= isset($dates["updatedDate"]) ? "original-date" : "" ?>">
