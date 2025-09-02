@@ -1,6 +1,6 @@
 # PHP CMS
 
-**Simple CMS made with PHP, Apache and MariaDB**
+**Simple CMS website**
 
 ![My Skills](https://go-skill-icons.vercel.app/api/icons?i=apache,php,mariadb,html,css,js)
 
