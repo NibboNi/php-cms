@@ -1,2 +1,5 @@
 Database.php
+
+dist
+node_modules
 uploads
