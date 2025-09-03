@@ -1,0 +1,31 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "**Simple CMS made with PHP, Apache and MariaDB**",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
+    "img": "gulp convertImages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NibboNi/php-cms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NibboNi/php-cms/issues"
+  },
+  "homepage": "https://github.com/NibboNi/php-cms#readme",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "gulp": "^5.0.1",
+    "gulp-replace": "^1.1.4",
+    "gulp-sass": "^6.0.1",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.91.0",
+    "sharp": "^0.34.3"
+  }
+}
