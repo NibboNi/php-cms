@@ -3,7 +3,7 @@
   <p>2025/08/22</p>
 </footer>
 
-<script src="/js/main.js" type="module"></script>
+<script src="/dist/assets/js/app.js" type="module"></script>
 </body>
 
 </html>
