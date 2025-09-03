@@ -73,8 +73,7 @@ function moveToDist() {
 
 function linkAssets() {
   return src(["dist/includes/header.php", "dist/includes/footer.php"])
-    .pipe(replace("/dist/assets/js/app.js", "/assets/js/app.js"))
-    .pipe(replace("/dist/assets/css/index.css", "/assets/css/index.css"))
+    .pipe(replace("/dist/assets/", "/assets/"))
     .pipe(dest("dist/includes/"));
 }
 
