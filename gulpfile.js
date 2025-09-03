@@ -1,21 +1,17 @@
-import * as fs from "fs";
-import path from "path";
+const fs = require("fs");
+const path = require("path");
 
-import { dest, series, src, watch } from "gulp";
-import * as dartSass from "sass";
-import gulpSass from "gulp-sass";
-import terser from "gulp-terser";
-import replace from "gulp-replace";
+const { dest, series, src, watch } = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const terser = require("gulp-terser");
+const replace = require("gulp-replace");
 
-import sharp from "sharp";
-import browserSync from "browser-sync";
-
-const sass = gulpSass(dartSass);
-const bs = browserSync.create();
+const sharp = require("sharp");
+const bs = require("browser-sync").create();
 
 function buildStyles() {
   return src("src/scss/**/*.scss", { sourcemaps: true })
-    .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
+    .pipe(sass({ style: "compressed" }).on("error", sass.logError))
     .pipe(dest("dist/assets/css", { sourcemaps: "." }))
     .pipe(bs.stream());
 }
@@ -54,8 +50,10 @@ async function convertImages() {
 
 function bsStart(done) {
   bs.init({
-    proxy: "http://localhost:8080",
-    open: true,
+    proxy: "http://dev.cms",
+    open: false,
+    notify: true,
+    injectChanges: true,
   });
 
   done();
@@ -71,9 +69,15 @@ function moveToDist() {
   return src("includes/**").pipe(dest("dist/includes/"));
 }
 
-function linkAssets() {
+function cleanAssets() {
   return src(["dist/includes/header.php", "dist/includes/footer.php"])
     .pipe(replace("/dist/assets/", "/assets/"))
+    .pipe(
+      replace(
+        '<script async="" src="http://dev.cms:3000/browser-sync/browser-sync-client.js"></script>',
+        ""
+      )
+    )
     .pipe(dest("dist/includes/"));
 }
 
@@ -83,6 +87,8 @@ function dev() {
   watch("**/*.php", bsReload);
 }
 
-export { convertImages };
-export const build = series(moveToDist, linkAssets);
-export default series(buildStyles, minifyJS, bsStart, dev);
+module.exports = {
+  convertImages,
+  build: series(moveToDist, cleanAssets),
+  default: series(buildStyles, minifyJS, bsStart, dev),
+};
