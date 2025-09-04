@@ -21,7 +21,7 @@ include "includes/header.php";
 
 ?>
 
-<form method="post" class="form form--login">
+<form method="post" class="login-form">
   <h2>Login</h2>
 
   <?php if (!empty($loginError)): ?>
@@ -40,7 +40,7 @@ include "includes/header.php";
     <label for="password" class="label">Password</label>
   </div>
 
-  <button type="submit" class="btn">Login</button>
+  <button type="submit" class="btn btn--submit">Login</button>
 </form>
 
 <?php include "includes/footer.php"; ?>

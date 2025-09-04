@@ -1,0 +1,35 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.login-form {
+  @include m.container($maxWidth: 50rem);
+  margin: auto;
+  padding: 5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  overflow: hidden;
+
+  .errors {
+    position: absolute;
+    animation: error-slide-in 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes error-slide-in {
+  0% {
+    top: -2rem;
+    opacity: 0;
+  }
+  50% {
+    top: 1rem;
+    opacity: 0.1;
+  }
+  to {
+    top: 1rem;
+    opacity: 1;
+  }
+}
