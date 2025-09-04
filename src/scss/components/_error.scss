@@ -1,0 +1,7 @@
+@use "../base/variables" as v;
+
+.error {
+  color: v.$red;
+  font-weight: 600;
+  font-size: 1.8rem;
+}

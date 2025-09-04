@@ -1,0 +1,44 @@
+@use "../base/variables" as v;
+
+.input-container {
+  width: 100%;
+  position: relative;
+
+  .input {
+    padding: 1rem 2rem;
+    width: 100%;
+    background-color: inherit;
+    border: 2px solid v.$gray;
+    border-radius: 1rem;
+
+    &:placeholder-shown {
+      + .label {
+        top: 50%;
+        left: 2rem;
+      }
+    }
+
+    &:not(:placeholder-shown) {
+      border-color: v.$black;
+    }
+
+    &:focus {
+      border: 2px solid v.$blue;
+      outline: none;
+
+      + .label {
+        top: -1.4rem;
+        left: 0rem;
+      }
+    }
+  }
+
+  .label {
+    position: absolute;
+    top: -1.4rem;
+    left: 0rem;
+    font-weight: 500;
+    transform: translateY(-50%);
+    transition: top 0.3s ease-in-out, left 0.3s ease-in-out;
+  }
+}
