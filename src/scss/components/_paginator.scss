@@ -1,0 +1,34 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.paginator {
+  @include m.container($maxWidth: 80rem);
+  padding: 6rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8rem;
+
+  &__btn {
+    height: 3.2rem;
+    width: 3.2rem;
+    fill: v.$white;
+    background-color: v.$black;
+    border: 2px solid transparent;
+    border-radius: 0.8rem;
+    transition: border-radius 0.3s ease-in-out;
+
+    &:hover {
+      border-radius: 1rem;
+    }
+
+    &--disabled {
+      pointer-events: none;
+      fill: v.$black;
+      background-color: v.$white;
+      border: 2px solid v.$black;
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

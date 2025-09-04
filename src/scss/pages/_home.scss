@@ -1,0 +1,27 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.main-list {
+  @include m.container($width: 90%, $maxWidth: 120rem);
+  padding: 2rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include m.md {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    @include m.md {
+      height: 100%;
+      width: calc(50% - 0.5rem);
+      flex-shrink: 1;
+    }
+  }
+}

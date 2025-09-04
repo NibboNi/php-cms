@@ -1,0 +1,32 @@
+@use "variables" as v;
+
+/** Media Queries **/
+@mixin sm {
+  @media (min-width: #{v.$sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{v.$md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{v.$lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{v.$xl}) {
+    @content;
+  }
+}
+
+@mixin container($width: 95%, $maxWidth: 120rem) {
+  margin: 0 auto;
+  width: $width;
+  max-width: $maxWidth;
+}

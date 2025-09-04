@@ -1,0 +1,30 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.main-footer {
+  margin-top: auto;
+  padding: 4rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: v.$white;
+  background-color: v.$black;
+
+  &__title {
+    width: 100%;
+    font-size: 8rem;
+    font-weight: 200;
+
+    @include m.lg {
+      width: auto;
+    }
+  }
+
+  &__date {
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.6;
+  }
+}

@@ -1,6 +1,6 @@
-<footer class="footer">
-  <p>PHP</p>
-  <p>2025/08/22</p>
+<footer class="main-footer">
+  <p class="main-footer__title">PHP</p>
+  <time datetime="2025-08-22" class="main-footer__date">2025/08/22</time>
 </footer>
 
 <script src="/dist/assets/js/app.js" type="module"></script>

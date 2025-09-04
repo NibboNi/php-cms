@@ -26,22 +26,21 @@ require "includes/header.php"
 
 ?>
 
-<main class="container">
+<main>
 
   <?php if (empty($articles)): ?>
     <p>No articles found.</p>
   <?php else: ?>
-    <ul class="list">
+    <ul class="main-list">
 
       <?php foreach ($articles as $article): ?>
-        <li class="list__item">
-          <article>
-            <h2>
-              <a href="article.php?id=<?= $article["id"]; ?>">
-                <?= htmlspecialchars($article["title"]); ?>
-              </a>
+        <li class="main-list__item">
+          <article class="article-card">
+            <h2 class="article-card__title">
+              <?= htmlspecialchars($article["title"]); ?>
             </h2>
-            <p><?= htmlspecialchars($article["content"]); ?></p>
+            <p class="article-card__body"><?= htmlspecialchars($article["content"]); ?></p>
+            <a href="article.php?id=<?= $article["id"]; ?>" class="article-card__link">keep reading</a>
           </article>
         </li>
       <?php endforeach; ?>

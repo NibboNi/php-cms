@@ -1,0 +1,63 @@
+@use "sass:color";
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.article-card {
+  padding: 4rem 2rem 2rem;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &::before {
+    content: "";
+    height: 1px;
+    width: 95%;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    background-color: rgba($color: v.$black, $alpha: 0.2);
+    border-radius: 1rem;
+    transform: translateX(-50%);
+    z-index: -5;
+    transition: height 0.3s ease-in-out, width 0.3s ease-in-out,
+      bottom 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+
+  &:hover {
+    &::before {
+      height: 100%;
+      width: 100%;
+      bottom: 0%;
+      background-color: rgba($color: v.$gray, $alpha: 0.2);
+    }
+  }
+
+  &__title {
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 3.6rem;
+    font-weight: 500;
+  }
+
+  &__body {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__link {
+    margin-top: 2rem;
+    font-weight: 500;
+    color: v.$blue;
+    text-transform: capitalize;
+
+    &:hover {
+      font-style: italic;
+      text-decoration: underline;
+    }
+  }
+}

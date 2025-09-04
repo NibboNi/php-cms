@@ -1,0 +1,107 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.main-header-container {
+  background-color: v.$white;
+  border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.1);
+}
+
+.main-header {
+  @include m.container($width: 100%);
+
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: 300;
+    font-size: 3.6rem;
+  }
+
+  .nav-btn {
+    padding: 0;
+    height: 2.4rem;
+    width: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: transparent;
+    border: none;
+    z-index: 100;
+
+    span {
+      height: 2px;
+      width: 100%;
+      background-color: v.$black;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    &.open {
+      span {
+        background-color: v.$white;
+      }
+    }
+
+    @include m.md {
+      display: none;
+    }
+  }
+
+  &__nav {
+    padding: 10rem 0rem 2rem;
+    height: 100dvh;
+    width: 0%;
+    max-width: 18rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    color: v.$white;
+    background-color: v.$black;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out, padding 0.4s ease-in-out;
+
+    &.open {
+      padding: 10rem 2rem 2rem;
+      width: 100%;
+      @include m.md {
+        padding: 0;
+        width: auto;
+      }
+    }
+
+    @include m.md {
+      padding: 0;
+      height: auto;
+      width: auto;
+      max-width: auto;
+      position: static;
+      flex-direction: row;
+      align-items: flex-start;
+      color: v.$black;
+      background-color: transparent;
+    }
+  }
+
+  &__link {
+    font-size: 1.8rem;
+    text-transform: capitalize;
+    font-weight: 500;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  @include m.md {
+    align-items: flex-end;
+  }
+}

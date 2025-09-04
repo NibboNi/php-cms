@@ -6,7 +6,9 @@ function toggleNav() {
   const navMenu = document.querySelector("#navMenu");
 
   navBtn.addEventListener("click", () => {
+    navBtn.classList.toggle("open");
     navMenu.classList.toggle("open");
+    document.documentElement.classList.toggle("scroll-nav");
   });
 }
 

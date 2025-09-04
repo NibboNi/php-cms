@@ -1,0 +1,9 @@
+@use "../base/mixins" as m;
+
+.scroll-nav {
+  overflow: hidden;
+
+  @include m.md {
+    overflow: auto;
+  }
+}
