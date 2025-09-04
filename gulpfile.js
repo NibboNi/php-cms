@@ -52,7 +52,7 @@ function bsStart(done) {
   bs.init({
     proxy: "http://dev.cms",
     open: false,
-    notify: true,
+    notify: false,
     injectChanges: true,
   });
 
