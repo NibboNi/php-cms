@@ -1,0 +1,112 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.article {
+  margin-bottom: 4rem;
+}
+
+.article__img {
+  height: 20rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  @include m.md {
+    height: 30rem;
+  }
+
+  @include m.lg {
+    height: 40rem;
+  }
+
+  @include m.xl {
+    height: 50rem;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.article__crumbs {
+  @include m.container($maxWidth: 150rem);
+  padding-top: 1rem;
+  display: flex;
+  gap: 0.2rem;
+
+  &:hover {
+    a {
+      color: v.$blue;
+    }
+  }
+
+  span {
+    display: inline-block;
+    font-weight: 300;
+    max-width: 20ch;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.article__title {
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 120rem;
+  font-size: 4.8rem;
+  word-break: break-all;
+
+  @include m.md {
+    font-size: 6.4rem;
+  }
+
+  @include m.lg {
+    font-size: 8rem;
+  }
+
+  @include m.xl {
+    font-size: 9.6rem;
+  }
+}
+
+.article__date {
+  @include m.container;
+  padding: 1rem 0rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  @include m.md {
+    font-size: 1.6rem;
+  }
+
+  div {
+    display: flex;
+    gap: 1ch;
+
+    p {
+      font-style: italic;
+    }
+
+    time {
+      font-weight: 300;
+    }
+  }
+}
+
+.article__body {
+  @include m.container;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+
+  @include m.md {
+    font-size: 2.4rem;
+  }
+
+  @include m.lg {
+    font-size: 3.2rem;
+  }
+}

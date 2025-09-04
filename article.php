@@ -25,16 +25,21 @@ require "includes/header.php";
 
 ?>
 
-<main class="container article-container">
+<main>
 
   <?php if ($article): ?>
 
     <article class="article">
       <header class="article__header">
+
         <?php if ($article->image_file): ?>
-          <img src="/uploads/<?= $article->image_file; ?>" alt="">
+          <div class="article__img">
+            <img src="/uploads/<?= $article->image_file; ?>" alt="">
+          </div>
         <?php endif; ?>
-        <h2 class="article__title"><?= htmlspecialchars($article->title); ?></h2>
+        <p class="article__crumbs"><a href="/">Articles/</a><span><?= htmlspecialchars($article->title); ?></span></p>
+        <h2 class="article__title toggle-text"><?= htmlspecialchars($article->title); ?></h2>
+
         <div class="article__date">
           <div class="<?= isset($dates["updatedDate"]) ? "original-date" : "" ?>">
 
