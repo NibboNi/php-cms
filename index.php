@@ -36,7 +36,7 @@ require "includes/header.php"
       <?php foreach ($articles as $article): ?>
         <li class="main-list__item">
           <article class="article-card">
-            <h2 class="article-card__title">
+            <h2 class="article-card__title toggle-text shorted">
               <?= htmlspecialchars($article["title"]); ?>
             </h2>
             <p class="article-card__body"><?= htmlspecialchars($article["content"]); ?></p>

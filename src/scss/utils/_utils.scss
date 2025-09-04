@@ -11,3 +11,9 @@
 .mt-auto {
   margin-top: auto;
 }
+
+.shorted {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
