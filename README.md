@@ -2,7 +2,7 @@
 
 **Simple CMS website**
 
-![My Skills](https://go-skill-icons.vercel.app/api/icons?i=apache,php,mariadb,html,css,js)
+![My Skills](https://go-skill-icons.vercel.app/api/icons?i=apache,php,mariadb,nodejs,js,sass,gulp)
 
 ## Requirements 🛠️⚙️
 
@@ -10,10 +10,11 @@
 - PHP 8.x
 - PHP extensions: mysqli, pdo
 - MariaDB (or MySQL)
+- Node
 
 ## Linux Setup (For Local Development) 🐧🧰
 
-1. Create virtual host 📡
+### **1. Create virtual host** 📡
 
 > _`sites-available`_ is a directory inside your Apache installation (usually _`/etc/apache2/sites-available`_). Check where Apache is installed on your system.
 
@@ -22,9 +23,9 @@ sudo nano /path/to/sites-available/project-name.conf
 ```
 
 ```apacheconf
-<VirtualHost *:8080> # Or any desired port
+<VirtualHost *:80>
   DocumentRoot "/path/to/project"
-  ServerName projectName.localhost
+  ServerName project.name
 
   <Directory "/path/to/project">
       Require all granted
@@ -36,14 +37,14 @@ sudo nano /path/to/sites-available/project-name.conf
 </VirtualHost>
 ```
 
-2. Enable site 🔄
+### **2. Enable site** 🔄
 
 ```sh
 sudo a2ensite project-name.conf
 sudo systemctl reload apache2
 ```
 
-3. Update /etc/hosts file 📝
+### **3. Update /etc/hosts file** 📝
 
 ```sh
 sudo nano /etc/hosts
@@ -52,14 +53,26 @@ sudo nano /etc/hosts
 _Add to map local domain to localhost_ 🔗
 
 ```text
-127.0.0.1 projectName.localhost
+0.0.0.0        project.name
 ```
 
-4. Grant permissions for PHP 🪪
+### **4. Grant permissions for PHP (If required)** 🪪
 
 ```sh
 sudo chown -R my-user:www-data /path/to/project
 sudo chmod -R 775 /path/to/project
 ```
 
-5. Everything should be set and ready to load **_`localhost:8080`_** (or the assigned port) on your browser 🌐
+## **5. Install node dependencies** 📥
+
+```sh
+npm i
+```
+
+### **6. Run dev for browser syncing, js minifiyng and sass compiling**
+
+```sh
+npm run dev
+```
+
+_Everything should be set and ready to load \*\*_`project.name`_\*\* on your browser 🌐_
