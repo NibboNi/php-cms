@@ -1,5 +1,18 @@
 @use "../base/mixins" as m;
 
+.container {
+  @include m.container;
+  padding-top: 5rem;
+}
+
+.heading {
+  font-size: 4.8rem;
+
+  @include m.md {
+    font-size: 6.4rem;
+  }
+}
+
 .scroll-nav {
   overflow: hidden;
 
