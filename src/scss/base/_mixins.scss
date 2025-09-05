@@ -30,22 +30,3 @@
   width: $width;
   max-width: $maxWidth;
 }
-
-@mixin btn(
-  $color: v.$white,
-  $bgColor: v.$black,
-  $border: none,
-  $bRadius: 1rem
-) {
-  padding: 1rem 2rem;
-  color: $color;
-  background-color: $bgColor;
-  border: $border;
-  border-radius: $bRadius;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-    @content;
-  }
-}
