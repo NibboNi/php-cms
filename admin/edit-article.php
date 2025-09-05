@@ -35,7 +35,7 @@ require "../includes/header.php";
 ?>
 
 <main class="container">
-  <h2>Edit Article</h2>
+  <h2 class="heading">Edit Article</h2>
 
   <?php
 
