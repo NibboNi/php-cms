@@ -69,7 +69,7 @@ sudo chmod -R 775 /path/to/project
 npm i
 ```
 
-### **6. Run dev for browser syncing, js minifiyng and sass compiling**
+### **6. Run dev for browser syncing and sass compiling**
 
 ```sh
 npm run dev
