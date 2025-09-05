@@ -1,6 +1,18 @@
 @use "../base/variables" as v;
-@use "../base/mixins" as m;
 
 .btn {
-  @include m.btn($bgColor: v.$blue, $bRadius: 5rem);
+  padding: 1rem 2rem;
+  color: v.$white;
+  background-color: v.$blue;
+  border: none;
+  border-radius: 1000rem;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &--delete {
+    background-color: v.$redDark;
+  }
 }
