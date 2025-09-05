@@ -23,7 +23,7 @@ require "../includes/header.php";
 ?>
 
 <main class="container">
-  <h2>New Article</h2>
+  <h2 class="heading">New Article</h2>
 
   <?php
 

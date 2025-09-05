@@ -1,12 +1,13 @@
-<?php if (!empty($article->formErrors)): ?>
-  <div class="errors">
-    <?php foreach ($article->formErrors as $index => $error): ?>
-      <p class="error" style="animation-delay: <?= "0" . ".{$index}s"; ?>;"><?= "Caution: " . $error . "!" ?></p>
-    <?php endforeach; ?>
-  </div>
-<?php endif; ?>
+<form method="post" class="article-form">
 
-<form method="post" class="form">
+  <?php if (!empty($article->formErrors)): ?>
+    <div class="errors">
+      <?php foreach ($article->formErrors as $index => $error): ?>
+        <p class="error" style="animation-delay: <?= "0" . ".{$index}s"; ?>;"><?= "Caution: " . $error . "!" ?></p>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+
   <div class="input-container">
     <input id="title" name="title" type="text" placeholder=" " value="<?= htmlspecialchars($article->title ?? ""); ?>" maxlength="128" class="input" required>
     <label for="title" class="label">Title</label>
