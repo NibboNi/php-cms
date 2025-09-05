@@ -1,8 +1,47 @@
 @use "../base/variables" as v;
 @use "../base/mixins" as m;
+@use "sass:color";
 
 .article {
   margin-bottom: 4rem;
+}
+
+.article__actions {
+  @include m.container($maxWidth: 60rem);
+  margin: 1rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .article__action {
+    padding: 1rem 0rem;
+    width: 100%;
+    font-weight: 500;
+    font-size: 1.4rem;
+    background-color: rgba($color: v.$gray, $alpha: 0.5);
+    flex-shrink: 0;
+    text-align: center;
+    opacity: 0.9;
+
+    @include m.md {
+      padding: 1.2rem 2rem;
+      font-size: 1.8rem;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:nth-of-type(2) {
+      border-right: 1px solid rgba($color: v.$black, $alpha: 0.1);
+    }
+
+    &--delete {
+      color: v.$white;
+      background-color: color.adjust(v.$redDark, $lightness: -5%);
+    }
+  }
 }
 
 .article__img {

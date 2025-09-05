@@ -37,6 +37,7 @@ require "includes/header.php";
             <img src="/uploads/<?= $article->image_file; ?>" alt="">
           </div>
         <?php endif; ?>
+
         <p class="article__crumbs"><a href="/">Articles/</a><span><?= htmlspecialchars($article->title); ?></span></p>
         <h2 class="article__title toggle-text"><?= htmlspecialchars($article->title); ?></h2>
 
