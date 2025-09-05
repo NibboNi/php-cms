@@ -1,0 +1,36 @@
+@use "../base/mixins" as m;
+
+.article-form {
+  @include m.container($maxWidth: 60rem);
+  padding: 2rem 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+
+  @include m.md {
+    padding-top: 4rem;
+  }
+
+  .errors {
+    padding-bottom: 2rem;
+    position: relative;
+
+    @include m.md {
+      width: 100%;
+      position: absolute;
+      top: -6.4rem;
+      left: 28rem;
+    }
+
+    @include m.lg {
+      left: 16rem;
+    }
+
+    @include m.xl {
+      left: 6rem;
+    }
+  }
+}
