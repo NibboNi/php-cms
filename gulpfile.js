@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
-const { dest, series, src, watch } = require("gulp");
+const { dest, series, src, watch, parallel } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const terser = require("gulp-terser");
 const replace = require("gulp-replace");
+const zip = require("gulp-zip").default;
 
 const sharp = require("sharp");
 const bs = require("browser-sync").create();
@@ -12,14 +13,14 @@ const bs = require("browser-sync").create();
 function buildStyles() {
   return src("src/scss/**/*.scss", { sourcemaps: true })
     .pipe(sass({ style: "compressed" }).on("error", sass.logError))
-    .pipe(dest("dist/assets/css", { sourcemaps: "." }))
+    .pipe(dest("src/assets/css", { sourcemaps: "." }))
     .pipe(bs.stream());
 }
 
 function minifyJS() {
   return src("src/js/**/*.js", { sourcemaps: true })
     .pipe(terser())
-    .pipe(dest("dist/assets/js", { sourcemaps: "." }))
+    .pipe(dest("src/assets/js", { sourcemaps: "." }))
     .pipe(bs.stream());
 }
 
@@ -65,13 +66,15 @@ function bsReload(done) {
   done();
 }
 
-function moveToDist() {
-  return src("includes/**").pipe(dest("dist/includes/"));
+function moveFiles(from, to) {
+  return function () {
+    return src(from).pipe(dest(to));
+  };
 }
 
 function cleanAssets() {
   return src(["dist/includes/header.php", "dist/includes/footer.php"])
-    .pipe(replace("/dist/assets/", "/assets/"))
+    .pipe(replace("/src/assets/", "/assets/"))
     .pipe(
       replace(
         '<script async="" src="http://dev.cms:3000/browser-sync/browser-sync-client.js"></script>',
@@ -81,6 +84,25 @@ function cleanAssets() {
     .pipe(dest("dist/includes/"));
 }
 
+const mvIncludes = moveFiles("includes/**", "dist/includes/");
+const mvJS = moveFiles("src/assets/js/**", "dist/assets/js/");
+const mvCSS = moveFiles("src/assets/css/**", "dist/assets/css/");
+const mvAdmin = moveFiles("admin/**", "dist/admin/");
+const mvClasses = moveFiles("classes/**", "dist/classes/");
+const mvPHP = moveFiles("*.php", "dist/");
+const mvHtaccess = moveFiles(".htaccess", "dist/");
+
+function zipIt() {
+  return src("dist/**", { base: "." }).pipe(zip("dist.zip")).pipe(dest("dist"));
+}
+
+const build = series(
+  parallel(buildStyles, minifyJS),
+  parallel(mvIncludes, mvAdmin, mvClasses, mvPHP, mvHtaccess, mvJS, mvCSS),
+  cleanAssets,
+  zipIt
+);
+
 function dev() {
   watch("src/scss/**/*.scss", buildStyles);
   watch("src/js/**/*.js", minifyJS);
@@ -89,6 +111,6 @@ function dev() {
 
 module.exports = {
   convertImages,
-  build: series(moveToDist, cleanAssets),
+  build,
   default: series(buildStyles, minifyJS, bsStart, dev),
 };
