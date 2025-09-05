@@ -84,21 +84,27 @@ function cleanAssets() {
     .pipe(dest("dist/includes/"));
 }
 
-const mvIncludes = moveFiles("includes/**", "dist/includes/");
-const mvJS = moveFiles("src/assets/js/**", "dist/assets/js/");
-const mvCSS = moveFiles("src/assets/css/**", "dist/assets/css/");
-const mvAdmin = moveFiles("admin/**", "dist/admin/");
-const mvClasses = moveFiles("classes/**", "dist/classes/");
-const mvPHP = moveFiles("*.php", "dist/");
-const mvHtaccess = moveFiles(".htaccess", "dist/");
+const paths = [
+  ["includes/**", "dist/includes/"],
+  ["src/assets/js/**", "dist/assets/js/"],
+  ["src/assets/css/**", "dist/assets/css/"],
+  ["admin/**", "dist/admin/"],
+  [["classes/**", "!classes/*.example"], "dist/classes/"],
+  ["*.php", "dist/"],
+  [".htaccess", "dist/"],
+];
+
+const moving = paths.map(([from, to]) => moveFiles(from, to));
 
 function zipIt() {
-  return src("dist/**", { base: "." }).pipe(zip("dist.zip")).pipe(dest("dist"));
+  return src(["dist/**", "dist/**/.*"], { base: "." })
+    .pipe(zip("dist.zip"))
+    .pipe(dest("dist"));
 }
 
 const build = series(
   parallel(buildStyles, minifyJS),
-  parallel(mvIncludes, mvAdmin, mvClasses, mvPHP, mvHtaccess, mvJS, mvCSS),
+  parallel(...moving),
   cleanAssets,
   zipIt
 );
