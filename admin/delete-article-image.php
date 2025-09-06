@@ -12,7 +12,7 @@ if (isset($id)) {
 
   $article = Article::getById($id, $conn, "id, image_file");
 
-  if (!$article) {
+  if (!$article || !$article->image_file) {
     die("Article not found!");
   }
 } else {
@@ -39,17 +39,18 @@ require "../includes/header.php";
 <main class="container">
   <h2>Delete Article Image</h2>
 
-  <?php if ($article->image_file): ?>
-    <img src="/uploads/<?= $article->image_file; ?>" alt="">
-  <?php endif; ?>
+  <form method="post" class="modal">
 
-  <form method="post" class="form">
+    <h2 class="modal__header">Are you sure you want to delete this image?</h2>
+    <div class="article-preview">
+      <?php if ($article->image_file): ?>
+        <img src="/uploads/<?= $article->image_file; ?>" alt="">
+      <?php endif; ?>
+    </div>
 
-    <p>Are you sure?</p>
-
-    <div class="modal-delete__actions">
+    <div class="modal__actions">
       <button class="btn btn--delete">Delete</button>
-      <a href="/admin/article.php?id=<?= $article->id ?>" class="btn">Cancel</a>
+      <a href="article.php?id=<?= $article->id ?>" class="btn">Cancel</a>
     </div>
   </form>
 
