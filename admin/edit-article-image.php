@@ -106,22 +106,33 @@ require "../includes/header.php";
 ?>
 
 <main class="container">
-  <h2>Edit Article Image</h2>
+  <h2 class="heading">Edit Article Image</h2>
 
   <?php if ($article->image_file): ?>
-    <img src="/uploads/<?= $article->image_file; ?>" alt="">
-    <a href="/admin/delete-article-image.php?id=<?= $article->id; ?>">Delete</a>
+    <div class="edit-img-preview">
+      <p>current image</p>
+      <img src="/uploads/<?= $article->image_file; ?>" alt="">
+      <a href="/admin/delete-article-image.php?id=<?= $article->id; ?>" class="btn btn--delete">Delete</a>
+    </div>
   <?php endif; ?>
 
   <?php if (isset($fileErrorMessage)): ?>
-    <p><?= $fileErrorMessage; ?></p>
+    <div class="errors">
+      <p class="error center-text"><?= $fileErrorMessage; ?></p>
+    </div>
   <?php endif; ?>
 
-  <form method="post" enctype="multipart/form-data" class="form">
+  <form method="post" enctype="multipart/form-data" class="article-form">
 
-    <div class="input-container">
-      <input id="image" name="image" type="file" class="input">
-      <label for="image" class="label">Image</label>
+    <div id="drop-zone" class="file-upload">
+      <label for="image" class="img-preview">
+        <img id="img-preview" src="" alt="" class="img-preview__img">
+        <p class="img-preview__name"></p>
+      </label>
+      <p>Drag and drop your image</p>
+      <p>or</p>
+      <label for="image" class="mock-file-input">Browse files</label>
+      <input id="image" name="image" type="file" accept=".jpg, .jpeg, .png" hidden>
     </div>
 
     <button type="submit" class="btn">Upload</button>

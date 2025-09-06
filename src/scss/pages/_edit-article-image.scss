@@ -1,0 +1,98 @@
+@use "sass:color";
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.file-upload {
+  padding: 4rem 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  border: 2px dashed rgba($color: v.$black, $alpha: 0.5);
+  border-radius: 1.4rem;
+  overflow: hidden;
+  opacity: 0.5;
+  transition: border-radius 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    border 0.3s ease-in-out;
+
+  &.dropped {
+    opacity: 1;
+    background-color: color.adjust(v.$gray, $lightness: 80%);
+    border: 2px dashed v.$black;
+    border-radius: 2.4rem;
+  }
+
+  &:hover {
+    opacity: 1;
+    background-color: color.adjust(v.$gray, $lightness: 80%);
+    border: 2px dashed v.$black;
+    border-radius: 2.4rem;
+  }
+
+  .mock-file-input {
+    padding: 1rem 2rem;
+    background-color: color.adjust(v.$gray, $lightness: 10%);
+    text-transform: capitalize;
+    border-radius: 1rem;
+
+    &:hover {
+      background-color: color.adjust(v.$gray, $lightness: 5%);
+    }
+  }
+
+  .img-preview {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+
+    &__img {
+      height: 0rem;
+      object-fit: contain;
+      transition: height 0.3s ease-in-out;
+
+      &--display {
+        height: 15rem;
+      }
+    }
+
+    &__name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      font-style: italic;
+      text-align: center;
+    }
+  }
+}
+
+.edit-img-preview {
+  margin: 5rem auto;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  p {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.4rem;
+  }
+
+  img {
+    height: 100%;
+    object-fit: contain;
+  }
+
+  a {
+    font-weight: 600;
+  }
+}
