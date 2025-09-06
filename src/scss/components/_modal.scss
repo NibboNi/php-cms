@@ -3,6 +3,7 @@
 
 .modal {
   @include m.container($maxWidth: 50rem);
+  max-height: 80rem;
   padding: 5rem 3rem 2.5rem;
   position: absolute;
   top: 50%;
@@ -43,6 +44,11 @@
 
     &__content {
       font-size: 2.4rem;
+    }
+
+    &__img {
+      max-height: 50rem;
+      object-fit: contain;
     }
   }
 

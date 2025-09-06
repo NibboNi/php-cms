@@ -44,7 +44,7 @@ require "../includes/header.php";
     <h2 class="modal__header">Are you sure you want to delete this image?</h2>
     <div class="article-preview">
       <?php if ($article->image_file): ?>
-        <img src="/uploads/<?= $article->image_file; ?>" alt="">
+        <img src="/uploads/<?= $article->image_file; ?>" alt="" class="article-preview__img">
       <?php endif; ?>
     </div>
 
