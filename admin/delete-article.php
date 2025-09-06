@@ -35,8 +35,8 @@ include "../includes/header.php";
 <form action="delete-article.php?id=<?= $article->id ?>" method="post" class="modal">
   <h2 class="modal__header">Are you sure you want to delete this post?</h2>
   <div class="article-preview">
-    <h3 class="article-preview__title"><?= $article->title; ?></h3>
-    <p class="article-preview__content"><?= $article->content; ?></p>
+    <h3 class="article-preview__title"><?= htmlspecialchars($article->title); ?></h3>
+    <p class="article-preview__content"><?= htmlspecialchars($article->content); ?></p>
   </div>
   <div class="modal__actions">
     <button class="btn btn--delete">Delete</button>
