@@ -13,19 +13,16 @@
   border: 2px dashed rgba($color: v.$black, $alpha: 0.5);
   border-radius: 1.4rem;
   overflow: hidden;
-  opacity: 0.5;
   transition: border-radius 0.3s ease-in-out, background-color 0.3s ease-in-out,
     border 0.3s ease-in-out;
 
   &.dropped {
-    opacity: 1;
     background-color: color.adjust(v.$gray, $lightness: 80%);
     border: 2px dashed v.$black;
     border-radius: 2.4rem;
   }
 
   &:hover {
-    opacity: 1;
     background-color: color.adjust(v.$gray, $lightness: 80%);
     border: 2px dashed v.$black;
     border-radius: 2.4rem;
