@@ -45,7 +45,9 @@ require "../includes/header.php";
           </div>
         <?php endif; ?>
 
+        <p class="article__crumbs"><a href="/admin/">Admin/</a><span><?= htmlspecialchars($article->title); ?></span></p>
         <h2 class="article__title toggle-text"><?= htmlspecialchars($article->title); ?></h2>
+
         <div class="article__date">
           <div class="<?= isset($dates["updatedDate"]) ? "original-date" : "" ?>">
 
