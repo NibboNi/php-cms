@@ -126,6 +126,33 @@ class Article
   }
 
   /**
+   * Get article record based on the ID along with associated categories, if any
+   *
+   * @param PDO $conn Connection to the database
+   * @param int $id The article ID
+   *
+   * @return array The article data with categories
+   */
+  public static function getWithCategories($id, $conn)
+  {
+    $query = "SELECT article.*, category.name AS category_name
+              FROM article
+              LEFT JOIN article_category
+              ON article.id = article_category.article_id
+              LEFT JOIN category
+              ON article_category.category_id = category.id
+              WHERE article.id = :id      
+    ;";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  /**
    * Insert an article record
    *
    * @param PDO Object $conn Connection to the database 
@@ -154,6 +181,29 @@ class Article
   }
 
   /**
+   * Get the articles categories if any
+   *
+   * @param PDO $conn Connection to the database 
+   * @return array The category data
+   */
+  public function getCategories($conn)
+  {
+    $query = "SELECT category.*
+              FROM category
+              JOIN article_category
+              ON category.id = article_category.category_id  
+              WHERE article_id = :id      
+    ;";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  /**
    * Update an article record
    *
    * @param PDO Object $conn Connection to the database 
@@ -179,6 +229,56 @@ class Article
       return false;
     }
   }
+
+  /**
+   * Sets categories related to the calling Article
+   *
+   * @param PDO $conn Connection to the database
+   * @param array $ids A list of the categories ids to set
+   * 
+   * @return void
+   */
+  public function setCategories($conn, $ids)
+  {
+    if ($ids) {
+      $query = "INSERT IGNORE INTO article_category (article_id, category_id)
+                VALUES ";
+
+      $values = [];
+
+      foreach ($ids as $id) {
+        $values[] = "({$this->id}, ?)";
+      }
+
+      $query .= implode(", ", $values) . ";";
+
+      $stmt = $conn->prepare($query);
+
+      foreach ($ids as $i => $id) {
+        $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
+      }
+
+      $stmt->execute();
+    }
+
+    $query = "DELETE FROM article_category
+              WHERE article_id = {$this->id}";
+
+    if ($ids) {
+      $placeholders = array_fill(0, count($ids), "?");
+
+      $query .= " AND category_id NOT IN (" . implode(", ", $placeholders) . ");";
+    }
+
+    $stmt = $conn->prepare($query);
+
+    foreach ($ids as $i => $id) {
+      $stmt->bindValue($i + 1, $id, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
+  }
+
 
   /**
    * Validate the article properties, putting any validation error messages in the $errors property

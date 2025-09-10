@@ -9,15 +9,15 @@ $conn = require "../includes/db.php";
 $id = $_GET["id"] ?? null;
 
 if (isset($id)) {
-  $article = Article::getById($id, $conn);
+  $article = Article::getWithCategories($id, $conn);
 
-  if ($article) {
+  // if ($article) {
 
-    $dates = $article->getDates();
-  } else {
+  //   $dates = $article->getDates();
+  // } else {
 
-    $article = null;
-  }
+  //   $article = null;
+  // }
 } else {
 
   $article = null;
@@ -39,16 +39,25 @@ require "../includes/header.php";
           <a href="edit-article-image.php?id=<?= $id ?>" class="article__action">Edit image</a>
         </div>
 
-        <?php if ($article->image_file): ?>
+        <?php if ($article[0]["image_file"]): ?>
           <div class="article__img">
-            <img src="/uploads/<?= $article->image_file; ?>" alt="">
+            <img src="/uploads/<?= $article[0]["image_file"]; ?>" alt="">
           </div>
         <?php endif; ?>
 
-        <p class="article__crumbs"><a href="/admin/">Admin/</a><span><?= htmlspecialchars($article->title); ?></span></p>
-        <h2 class="article__title toggle-text"><?= htmlspecialchars($article->title); ?></h2>
+        <p class="article__crumbs"><a href="/admin/">Articles/</a><span><?= htmlspecialchars($article[0]["title"]); ?></span></p>
 
-        <div class="article__date">
+        <?php if ($article[0]["category_name"]): ?>
+          <div class="article__categories">
+            <?php foreach ($article as $a): ?>
+              <p class="category category-<?= $a["category_name"]; ?>"><?= htmlspecialchars($a["category_name"]) ?></p>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+
+        <h2 class="article__title toggle-text"><?= htmlspecialchars($article[0]["title"]); ?></h2>
+
+        <!-- <div class="article__date">
           <div class="<?= isset($dates["updatedDate"]) ? "original-date" : "" ?>">
 
             <?php if (isset($dates["updatedDate"])): ?>
@@ -65,9 +74,11 @@ require "../includes/header.php";
             </div>
           <?php endif; ?>
 
-        </div>
+        </div> -->
       </header>
-      <p class="article__body"><?= htmlspecialchars($article->content); ?></p>
+
+      <p class="article__body"><?= htmlspecialchars($article[0]["content"]); ?></p>
+
     </article>
 
   <?php else: ?>

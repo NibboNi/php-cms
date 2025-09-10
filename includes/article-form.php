@@ -16,5 +16,33 @@
     <textarea name="content" rows="7" id="content" placeholder=" " class="input input--textarea" required><?= htmlspecialchars($article->content ?? ""); ?></textarea>
     <label for="content" class="label">Content</label>
   </div>
+
+  <?php if ($categories): ?>
+
+    <fieldset>
+      <legend>Categories</legend>
+
+
+      <?php foreach ($categories as $category):  ?>
+
+        <div>
+          <input
+            id="category-<?= $category["id"]; ?>"
+            type="checkbox"
+            name="category[]"
+            value="<?= $category["id"]; ?>"
+            <?php if (in_array($category["id"], $categoriesIds)): ?>
+            checked
+            <?php endif; ?>>
+          <label for="category-<?= $category["id"]; ?>"><?= htmlspecialchars($category["name"]) ?></label>
+        </div>
+
+      <?php endforeach; ?>
+
+
+    </fieldset>
+
+  <?php endif; ?>
+
   <button type="submit" class="btn"><?= $action ?? "save" ?></button>
 </form>
