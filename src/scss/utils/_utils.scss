@@ -1,3 +1,4 @@
+@use "../base/variables" as v;
 @use "../base/mixins" as m;
 
 .container {
@@ -33,4 +34,18 @@
 
 .center-text {
   text-align: center;
+}
+
+.category {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 1px solid black;
+  border-radius: 1000rem;
+}
+@each $category, $color in v.$categories {
+  .category-#{$category} {
+    color: $color;
+    border-color: $color;
+  }
 }

@@ -12,3 +12,10 @@ $grayLight: #dddecd;
 $blue: #0084d1;
 $red: #ff2c2c;
 $redDark: #bf0000;
+
+// Categories
+$categories: (
+  "education": orange,
+  "products": red,
+  "technology": $blue,
+);
