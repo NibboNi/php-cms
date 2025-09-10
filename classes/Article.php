@@ -83,20 +83,48 @@ class Article
    */
   public static function getPage($conn, $limit = 8, $offset = 0)
   {
-    $query = "SELECT *
+    $query = "SELECT a.*, category.name AS category_name
+              FROM ( SELECT *
               FROM article
               ORDER BY published_at
               LIMIT :limit
-              OFFSET :offset
+              OFFSET :offset ) AS a
+              LEFT JOIN article_category
+              ON a.id = article_category.article_id
+              LEFT JOIN category
+              ON article_category.category_id = category.id
     ;";
 
     $stmt = $conn->prepare($query);
+
     $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
     $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
 
     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $articles = [];
+
+    $previousId = null;
+
+    foreach ($results as $row) {
+
+      $articleId = $row["id"];
+
+      if ($articleId !== $previousId) {
+
+        $row["category_names"] = [];
+
+        $articles[$articleId] = $row;
+      }
+
+      $articles[$articleId]["category_names"][] = $row["category_name"];
+
+      $previousId = $articleId;
+    }
+
+    return $articles;
   }
 
   /**

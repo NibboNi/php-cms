@@ -41,6 +41,19 @@ require "includes/header.php"
             </h2>
             <p class="article-card__body"><?= htmlspecialchars($article["content"]); ?></p>
             <a href="article.php?id=<?= $article["id"]; ?>" class="article-card__link">keep reading</a>
+
+            <?php if ($article["category_name"]): ?>
+
+              <div class="article__categories">
+
+                <?php foreach ($article["category_names"] as $name): ?>
+                  <p class="category category-<?= $name; ?>"><?= htmlspecialchars($name) ?></p>
+                <?php endforeach; ?>
+
+              </div>
+
+            <?php endif; ?>
+
           </article>
         </li>
       <?php endforeach; ?>
