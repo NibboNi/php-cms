@@ -1,0 +1,68 @@
+// function deleteArticle() {
+//   const deleteArticleBtn = document.querySelector("#delete-article");
+
+//   if (!deleteArticleBtn) return;
+
+//   const params = new URLSearchParams(window.location.search);
+//   const id = params.get("id") ?? null;
+
+//   if (id) {
+//     deleteArticleBtn.addEventListener("click", e => {
+//       e.preventDefault();
+
+//       createModal(
+//         `delete-article.php?id=${id}`,
+//         "Are you sure you want to delete this article?"
+//       );
+//     });
+//   }
+// }
+
+function createModal(
+  action = null,
+  message = "Are you sure you want to delete this?"
+) {
+  document.querySelector(".modal")?.remove();
+
+  const modalEl = document.createElement("form");
+  const modalHeader = document.createElement("h2");
+  const modalActions = document.createElement("div");
+  const modalDeleteBtn = document.createElement("button");
+  const modalCancelBtn = document.createElement("button");
+
+  modalCancelBtn.type = "button";
+  modalCancelBtn.classList.add("btn");
+  modalCancelBtn.textContent = "cancel";
+  modalCancelBtn.addEventListener("click", cancel);
+
+  modalDeleteBtn.type = "submit";
+  modalDeleteBtn.classList.add("btn", "btn--delete");
+  modalDeleteBtn.textContent = "delete";
+
+  modalActions.classList.add("modal__actions");
+  modalActions.appendChild(modalDeleteBtn);
+  modalActions.appendChild(modalCancelBtn);
+
+  modalHeader.classList.add("modal__header");
+  modalHeader.textContent = message;
+
+  if (action) {
+    modalEl.action = action;
+  }
+  modalEl.method = "post";
+  modalEl.classList.add("modal");
+  modalEl.appendChild(modalHeader);
+  modalEl.appendChild(modalActions);
+
+  document.body.appendChild(modalEl);
+  document.body.classList.add("no-scroll");
+
+  modalCancelBtn.focus();
+
+  function cancel() {
+    modalEl.remove();
+    document.body.classList.remove("no-scroll");
+  }
+}
+
+export default createModal;
