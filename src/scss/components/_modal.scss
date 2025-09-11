@@ -5,7 +5,7 @@
   @include m.container($maxWidth: 50rem);
   max-height: 80rem;
   padding: 5rem 3rem 2.5rem;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   display: flex;
@@ -27,6 +27,11 @@
     padding: 2rem 0rem 0rem;
     display: flex;
     justify-content: space-around;
+
+    * {
+      text-transform: capitalize;
+      font-weight: 600;
+    }
   }
 
   .article-preview {
@@ -54,8 +59,8 @@
 
   &::before {
     content: "";
-    height: 100dvh;
-    width: 100vw;
+    height: 101vh;
+    width: 101vw;
     position: absolute;
     top: 50%;
     left: 50%;
