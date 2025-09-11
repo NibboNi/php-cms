@@ -1,23 +1,3 @@
-// function deleteArticle() {
-//   const deleteArticleBtn = document.querySelector("#delete-article");
-
-//   if (!deleteArticleBtn) return;
-
-//   const params = new URLSearchParams(window.location.search);
-//   const id = params.get("id") ?? null;
-
-//   if (id) {
-//     deleteArticleBtn.addEventListener("click", e => {
-//       e.preventDefault();
-
-//       createModal(
-//         `delete-article.php?id=${id}`,
-//         "Are you sure you want to delete this article?"
-//       );
-//     });
-//   }
-// }
-
 function createModal(
   action = null,
   message = "Are you sure you want to delete this?"
