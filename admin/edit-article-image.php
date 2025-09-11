@@ -112,7 +112,7 @@ require "../includes/header.php";
     <div class="edit-img-preview">
       <p>current image</p>
       <img src="/uploads/<?= $article->image_file; ?>" alt="">
-      <a href="/admin/delete-article-image.php?id=<?= $article->id; ?>" class="btn btn--delete">Delete</a>
+      <a id="delete-article-img" href="/admin/delete-article-image.php?id=<?= $article->id; ?>" class="btn btn--delete">Delete</a>
     </div>
   <?php endif; ?>
 

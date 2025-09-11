@@ -34,7 +34,7 @@ require "../includes/header.php";
       <header class="article__header">
 
         <div class="article__actions">
-          <a href="delete-article.php?id=<?= $id ?>" class="article__action article__action--delete">Delete Article</a>
+          <a id="delete-article" href="delete-article.php?id=<?= $id ?>" class="article__action article__action--delete">Delete Article</a>
           <a href="edit-article.php?id=<?= $id ?>" class="article__action">Edit Article</a>
           <a href="edit-article-image.php?id=<?= $id ?>" class="article__action">Edit image</a>
         </div>
