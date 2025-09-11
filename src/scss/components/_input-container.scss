@@ -41,4 +41,19 @@
     transform: translateY(-50%);
     transition: top 0.3s ease-in-out, left 0.3s ease-in-out;
   }
+
+  textarea.input {
+    &:placeholder-shown {
+      + .label {
+        top: 2rem;
+      }
+    }
+
+    &:focus {
+      + .label {
+        top: -1.4rem;
+        left: 0rem;
+      }
+    }
+  }
 }
