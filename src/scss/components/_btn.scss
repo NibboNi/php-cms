@@ -15,4 +15,9 @@
   &--delete {
     background-color: v.$redDark;
   }
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
