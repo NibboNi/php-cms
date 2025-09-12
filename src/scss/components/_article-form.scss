@@ -30,3 +30,35 @@
     }
   }
 }
+
+.form-warning {
+  padding-top: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: red;
+  animation: fadeIn 1s ease-in-out forwards, blink 1s ease-in-out infinite 1s;
+
+  &--soft {
+    color: black;
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    color: red;
+  }
+  50% {
+    color: crimson;
+  }
+}
