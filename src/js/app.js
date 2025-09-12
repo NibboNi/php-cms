@@ -1,7 +1,8 @@
-import formatSupport from "./imageSupport.js";
 import toggleNav from "./toggleNav.js";
 import toggleText from "./toggleText.js";
 import dragDropFile from "./dropFile.js";
+import validateForm from "./validateForm.js";
+import formatSupport from "./imageSupport.js";
 import deleteFromArticle from "./deleteFromArticle.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,5 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleNav();
   toggleText();
   dragDropFile();
+  validateForm(document.querySelector(".article-form"));
   deleteFromArticle();
 });
