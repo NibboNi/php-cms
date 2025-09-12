@@ -19,13 +19,12 @@
 
   <?php if ($categories): ?>
 
-    <fieldset>
-      <legend>Categories</legend>
-
+    <fieldset class="categories">
+      <legend class="categories__title">Categories</legend>
 
       <?php foreach ($categories as $category):  ?>
 
-        <div>
+        <div class="category-input">
           <input
             id="category-<?= $category["id"]; ?>"
             type="checkbox"

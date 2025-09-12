@@ -1,0 +1,50 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.categories {
+  padding: 3rem 2rem 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.6rem;
+  row-gap: 1.2rem;
+  border: none;
+  border-top: 1px solid rgba($color: v.$black, $alpha: 0.4);
+
+  @include m.md {
+    gap: 1.2rem;
+  }
+
+  legend {
+    font-size: 2.4rem;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.category-input {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 9999rem;
+  box-shadow: 1px 1px 4px 0px rgba($color: v.$black, $alpha: 0.1),
+    -2px -2px 4px 0px rgba($color: v.$black, $alpha: 0.1);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  input {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  label {
+    font-weight: 500;
+    // color: v.$white;
+    text-transform: capitalize;
+  }
+}
