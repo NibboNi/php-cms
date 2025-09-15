@@ -17,5 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleText();
   dragDropFile();
   validateForm(document.querySelector(".article-form"));
+  validateForm(document.querySelector(".contact-form"));
   deleteFromArticle();
 });
