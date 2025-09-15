@@ -1,7 +1,9 @@
 Database.php
+contact.php
 
 dist
 node_modules
 uploads
+vendor
 
 src/css
