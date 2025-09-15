@@ -1,0 +1,21 @@
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
+
+.contact-form {
+  @include m.container($maxWidth: 50rem);
+  padding: 5rem 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+
+  h1 {
+    font-size: 4.8rem;
+    font-weight: 200;
+  }
+
+  textarea {
+    height: 10em;
+  }
+}
