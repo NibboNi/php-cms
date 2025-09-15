@@ -348,7 +348,7 @@ class Article
     return $stmt->execute();
   }
 
-  public function getDates()
+  public static function getDates(array $dates)
   {
 
     $formatDate = function (?string $dateStr, bool $withTime = false): ?array {
@@ -364,10 +364,10 @@ class Article
       ];
     };
 
-    $hasUpdate = !empty($this->updated_at);
+    $hasUpdate = !empty($dates["updated_at"]);
 
-    $published = $formatDate($this->published_at, $hasUpdate) ?? ["tag" => null, "attr" => null];
-    $updated = $formatDate($this->updated_at, true) ?? ["tag" => null, "attr" => null];
+    $published = $formatDate($dates["published_at"], $hasUpdate) ?? ["tag" => null, "attr" => null];
+    $updated = $formatDate($dates["updated_at"], true) ?? ["tag" => null, "attr" => null];
 
     return [
       "publishedDate" => $published["tag"],
