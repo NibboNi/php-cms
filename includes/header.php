@@ -28,7 +28,11 @@
 
         <?php if (Auth::isLoggedIn()): ?>
           <a href="/admin" class="main-header__link">Admin panel</a>
-          <a href="/contact.php" class="main-header__link">Contact</a>
+        <?php endif; ?>
+
+        <a href="/contact.php" class="main-header__link">Contact</a>
+
+        <?php if (Auth::isLoggedIn()): ?>
           <a href="/admin/new-article.php" class="main-header__link main-header__link--btn">
             <span>
               new article
