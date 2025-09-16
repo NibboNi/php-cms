@@ -1,0 +1,13 @@
+<?php
+
+define("DB_HOST", "");
+define("DB_NAME", "");
+define("DB_USER", "");
+define("DB_PASS", "");
+
+define("SMTP_HOST", "");
+define("SMTP_USER", "");
+define("SMTP_PASS", "");
+define("SMTP_PORT", 0);
+
+define("SHOW_ERROR_DETAIL", true);
