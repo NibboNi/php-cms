@@ -39,15 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
 
       $mail->isSMTP();
-      $mail->Host = "mail.mydomain.com";
+      $mail->Host = SMTP_HOST;
       $mail->SMTPAuth = true;
-      $mail->Username = "myuser@mydomain.com";
-      $mail->Password = "mypassword";
+      $mail->Username = SMTP_USER;
+      $mail->Password = SMTP_PASS;
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-      $mail->Port = ;
+      $mail->Port = SMTP_PORT;
 
-      $mail->setFrom("myuser@mydomain.com", "From who name, ex: Contact"); // Will show From Contact on the email
-      $mail->addAddress("myuser@mydomain.com");
+      $mail->setFrom(SMTP_USER, "Contact");
+      $mail->addAddress(SMTP_USER);
       $mail->addReplyTo($email);
       $mail->Subject = $subject;
       $mail->Body = $message;
@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $mail->send();
       $sent = true;
     } catch (Exception $e) {
+
       $errors[] = $mail->ErrorInfo;
     }
   }
